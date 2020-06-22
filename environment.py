@@ -27,7 +27,10 @@ class Environment:
                     action_shape (int): The number of legitimate actions in env.
         """
         self.model = model
-        self.env = gym.make(env_name, render=render)
+        if pybullet:
+            self.env = gym.make(env_name, render=render)
+        else:
+            self.env = gym.make(env_name)
         self.current_state = self.env.reset()
         self.action_shape = action_shape
         self.pybullet = pybullet
@@ -35,7 +38,7 @@ class Environment:
 
     def render_env(self):
         self.env.render()
-        time.sleep(0.01)
+        time.sleep(0.05)
 
     def select_action_from_policy(self, state):
         """

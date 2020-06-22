@@ -48,6 +48,8 @@ class Model(nn.Module):
           return nn.Conv2d
       elif layer_type == 'flatten':
           return nn.Flatten
+      elif layer_type == 'layernorm':
+          return nn.LayerNorm
       else:
           raise ValueError("Specified layer type is currently not supported!")
 
